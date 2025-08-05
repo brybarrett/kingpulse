@@ -33,20 +33,20 @@ This is a lean prototype designed to show how KingPool could integrate live-play
 
 ## 🎯 Demo Use Case
 
-1. Input 2 teams and their player scores
-2. System estimates win probability for each side
-3. GPT generates live trash talk / coaching comments based on the momentum swing
-4. Tilt Meter updates with pressure level
+1. Input 2 teams and their player scores  
+2. System estimates win probability for each side  
+3. GPT generates live trash talk / coaching comments based on the momentum swing  
+4. Tilt Meter updates with pressure level  
 5. Optional: Output card with shareable results
 
 ---
 
 ## 🧪 Tech Stack
 
-- Python (Flask)
-- OpenAI API (GPT-4)
-- HTML/CSS (Tailwind-lite or custom)
-- JS (for Tilt visuals)
+- Python (Flask)  
+- OpenAI API (GPT-4)  
+- HTML/CSS (Tailwind-lite or custom)  
+- JS (for Tilt visuals)  
 - Optional: JSON test inputs or fake player data
 
 ---
