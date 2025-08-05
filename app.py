@@ -1,27 +1,10 @@
 from flask import Flask, render_template, request, jsonify
 from pulse_engine import generate_commentary
+from win_simulator import calculate_win_probability, get_tilt_level
 import random
 import os
 
 app = Flask(__name__)
-
-# --- Utility Functions ---
-
-def calculate_win_probability(team_a_score, team_b_score):
-    total = team_a_score + team_b_score
-    if total == 0:
-        return 50, 50
-    a_pct = round((team_a_score / total) * 100, 2)
-    b_pct = round(100 - a_pct, 2)
-    return a_pct, b_pct
-
-def get_tilt_level(win_diff):
-    if win_diff < 5:
-        return "Low"
-    elif win_diff < 15:
-        return "Medium"
-    else:
-        return "High"
 
 # --- Routes ---
 

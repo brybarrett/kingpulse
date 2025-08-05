@@ -24,7 +24,6 @@ fallback_comments = {
 }
 
 def generate_commentary(team_a, team_b, score_a, score_b, a_win, b_win, tilt_level):
-    # GPT-style prompt (only used if OpenAI is enabled)
     prompt = (
         f"Generate a 1-2 sentence live fantasy sports commentary based on this data:\n"
         f"Team A: {team_a}, Score: {score_a}, Win Probability: {a_win}%\n"
@@ -33,7 +32,7 @@ def generate_commentary(team_a, team_b, score_a, score_b, a_win, b_win, tilt_lev
         f"Make it clever, trash-talky, and emotional like a live sports announcer."
     )
 
-    # Uncomment this block if using GPT-4:
+    # GPT mode (Uncomment when ready to go live with OpenAI)
     """
     try:
         response = openai.ChatCompletion.create(
@@ -50,5 +49,5 @@ def generate_commentary(team_a, team_b, score_a, score_b, a_win, b_win, tilt_lev
         return f"(GPT Fallback): {random.choice(fallback_comments.get(tilt_level, []))}"
     """
 
-    # Fallback (static demo mode)
+    # Static fallback mode (Simulated commentary)
     return random.choice(fallback_comments.get(tilt_level, []))

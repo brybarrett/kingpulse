@@ -1,0 +1,82 @@
+[
+  {
+    "team_a": "Gronk Spikes",
+    "team_b": "Mahomes Alone",
+    "score_a": 112,
+    "score_b": 109,
+    "tilt_level": "Low",
+    "clutch_level": "Medium"
+  },
+  {
+    "team_a": "CMC Ya Later",
+    "team_b": "Kupp My Ride",
+    "score_a": 98,
+    "score_b": 122,
+    "tilt_level": "High",
+    "clutch_level": "Low"
+  },
+  {
+    "team_a": "Fields of Dreams",
+    "team_b": "Hurts So Good",
+    "score_a": 134,
+    "score_b": 128,
+    "tilt_level": "Medium",
+    "clutch_level": "High"
+  },
+  {
+    "team_a": "Kelce Grammar",
+    "team_b": "Bijan Mustard",
+    "score_a": 67,
+    "score_b": 101,
+    "tilt_level": "High",
+    "clutch_level": "Medium"
+  },
+  {
+    "team_a": "Inglourious Staffords",
+    "team_b": "Dalvin & The Chipmunks",
+    "score_a": 125,
+    "score_b": 125,
+    "tilt_level": "Low",
+    "clutch_level": "Low"
+  },
+  {
+    "team_a": "Hot Chubb Time Machine",
+    "team_b": "The Thielen Is Mutual",
+    "score_a": 87,
+    "score_b": 103,
+    "tilt_level": "Medium",
+    "clutch_level": "Medium"
+  },
+  {
+    "team_a": "WaddleVision",
+    "team_b": "Swift Kicks",
+    "score_a": 141,
+    "score_b": 137,
+    "tilt_level": "High",
+    "clutch_level": "High"
+  },
+  {
+    "team_a": "Burrowito Supreme",
+    "team_b": "Joshin’ Around",
+    "score_a": 110,
+    "score_b": 95,
+    "tilt_level": "Medium",
+    "clutch_level": "Low"
+  },
+  {
+    "team_a": "Golladay Inn Express",
+    "team_b": "Tua Legit Tua Quit",
+    "score_a": 59,
+    "score_b": 124,
+    "tilt_level": "High",
+    "clutch_level": "Low"
+  },
+  {
+    "team_a": "Rhamondre Redemption",
+    "team_b": "It’s Always Sony in Philly",
+    "score_a": 113,
+    "score_b": 118,
+    "tilt_level": "Low",
+    "clutch_level": "Medium"
+  }
+]
