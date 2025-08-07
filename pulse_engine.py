@@ -1,10 +1,12 @@
 import random
-# Uncomment if you're ready to use OpenAI API
+import json
+import os
+
+# Uncomment below to enable GPT mode
 # import openai
-# import os
 # openai.api_key = os.getenv("OPENAI_API_KEY")
 
-# Placeholder GPT fallback responses
+# --- Commentary by Tilt Level ---
 fallback_comments = {
     "Low": [
         "Neck and neck! This one's going down to the wire.",
@@ -23,6 +25,25 @@ fallback_comments = {
     ]
 }
 
+# --- Win % Calculation ---
+def calculate_win_probability(score_a, score_b):
+    total = score_a + score_b
+    if total == 0:
+        return 50, 50
+    a_pct = round((score_a / total) * 100, 2)
+    b_pct = round(100 - a_pct, 2)
+    return a_pct, b_pct
+
+# --- Tilt Level Classification ---
+def get_tilt_level(win_diff):
+    if win_diff < 5:
+        return "Low"
+    elif win_diff < 15:
+        return "Medium"
+    else:
+        return "High"
+
+# --- Commentary Engine (Fallback or GPT) ---
 def generate_commentary(team_a, team_b, score_a, score_b, a_win, b_win, tilt_level):
     prompt = (
         f"Generate a 1-2 sentence live fantasy sports commentary based on this data:\n"
@@ -32,14 +53,20 @@ def generate_commentary(team_a, team_b, score_a, score_b, a_win, b_win, tilt_lev
         f"Make it clever, trash-talky, and emotional like a live sports announcer."
     )
 
-    # GPT mode (Uncomment when ready to go live with OpenAI)
+    # GPT-4 Mode (optional)
     """
     try:
         response = openai.ChatCompletion.create(
             model="gpt-4",
             messages=[
-                {"role": "system", "content": "You are a fantasy sports announcer with sharp wit and ruthless energy."},
-                {"role": "user", "content": prompt}
+                {
+                    "role": "system",
+                    "content": "You are a fantasy sports announcer with sharp wit and ruthless energy."
+                },
+                {
+                    "role": "user",
+                    "content": prompt
+                }
             ],
             max_tokens=60,
             temperature=0.9
@@ -49,5 +76,38 @@ def generate_commentary(team_a, team_b, score_a, score_b, a_win, b_win, tilt_lev
         return f"(GPT Fallback): {random.choice(fallback_comments.get(tilt_level, []))}"
     """
 
-    # Static fallback mode (Simulated commentary)
-    return random.choice(fallback_comments.get(tilt_level, []))
+    # Fallback commentary
+    return random.choice(fallback_comments.get(tilt_level, ["No commentary available."]))
+
+# --- Batch Simulation (All Events) ---
+def run_simulations():
+    path = os.path.join("static", "assets", "events.json")
+    try:
+        with open(path, "r") as f:
+            events = json.load(f)
+    except Exception as e:
+        return [{"error": "Failed to load events.json"}]
+
+    results = []
+    for event in events:
+        team_a = event["team_a"]
+        team_b = event["team_b"]
+        score_a = int(event["score_a"])
+        score_b = int(event["score_b"])
+
+        a_win, b_win = calculate_win_probability(score_a, score_b)
+        tilt = get_tilt_level(abs(a_win - b_win))
+        commentary = generate_commentary(team_a, team_b, score_a, score_b, a_win, b_win, tilt)
+
+        results.append({
+            "team_a": team_a,
+            "team_b": team_b,
+            "score_a": score_a,
+            "score_b": score_b,
+            "team_a_win_pct": a_win,
+            "team_b_win_pct": b_win,
+            "tilt_level": tilt,
+            "commentary": commentary
+        })
+
+    return results

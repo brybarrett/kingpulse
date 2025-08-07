@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const resultBox = document.getElementById("results");
   const commentaryBox = document.getElementById("commentary");
   const banner = document.getElementById("dangerBanner");
+  const simCommentary = document.getElementById("simCommentary");
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -32,10 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const data = await response.json();
 
-      // Update commentary
-      commentaryBox.textContent = data.commentary;
-
-      // Update results
+      // Update result box
       resultBox.innerHTML = `
         <p><strong>${teamA}:</strong> ${data.team_a_win_pct}%</p>
         <p><strong>${teamB}:</strong> ${data.team_b_win_pct}%</p>
@@ -43,11 +41,14 @@ document.addEventListener("DOMContentLoaded", () => {
         <p><strong>Clutch Rating:</strong> ${data.clutch_level}</p>
       `;
 
+      // Update live commentary section
+      commentaryBox.textContent = data.commentary;
+
       // Update meters
       updateTiltMeter(data.tilt_level);
       updateClutchMeter(data.clutch_level);
 
-      // Trigger danger banner for high tilt
+      // Update danger banner visibility
       if (data.tilt_level === "High") {
         banner.classList.remove("hidden");
         banner.classList.add("flex");
@@ -55,7 +56,6 @@ document.addEventListener("DOMContentLoaded", () => {
         banner.classList.add("hidden");
         banner.classList.remove("flex");
       }
-
     } catch (error) {
       console.error("Analysis error:", error);
       resultBox.innerHTML = `<p style="color: red;">Something went wrong. Try again.</p>`;
